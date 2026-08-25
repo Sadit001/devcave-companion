@@ -375,8 +375,8 @@
   position: relative;
   z-index: 1;
   user-select: none;
-  font-family: var(--font-editorial);
-  font-weight: 300;
+  font-family: "Bodoni Moda", var(--font-editorial);
+  font-weight: 400;
   font-style: italic;
   line-height: 0.78;
   letter-spacing: 0.08em;
