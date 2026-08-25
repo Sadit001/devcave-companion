@@ -122,7 +122,7 @@ export function Niches() {
   return (
     <section id="niches" className="relative">
       <span id="services" aria-hidden className="block" />
-      <div ref={trackRef} style={{ height: reduced ? undefined : `${niches.length * 110}vh` }}>
+      <div ref={trackRef} style={{ height: reduced ? undefined : `${niches.length * 75}vh` }}>
         <div className="sticky top-0 flex min-h-screen items-center overflow-hidden">
           <div className="mx-auto w-full max-w-6xl px-4 sm:px-6">
             <div className="relative">
