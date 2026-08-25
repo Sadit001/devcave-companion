@@ -1,4 +1,5 @@
-import { motion } from "motion/react";
+import { useRef } from "react";
+import { motion, useReducedMotion, useScroll, useSpring, useTransform } from "motion/react";
 import { Reveal } from "./Reveal";
 import {
   Counter,
@@ -15,12 +16,7 @@ import { SunMark } from "./SunMark";
 import workBrand from "@/assets/work-brand.jpg";
 import workWeb from "@/assets/work-web.jpg";
 
-const awards = [
-  { title: "2x Best UI Design", body: "Awarded by CSS Design Awards", date: "Feb 20, 2026" },
-  { title: "2x Best Innovation", body: "Awarded by CSS Design Awards", date: "Feb 20, 2026" },
-  { title: "2x Site of the Day", body: "Awwwards winners", date: "Apr 24, 2026" },
-  { title: "2x Honors", body: "For excellence in digital design", date: "May 02, 2026" },
-];
+
 
 const testimonials = [
   {
@@ -73,41 +69,63 @@ function SectionLabel({ children }: { children: string }) {
 }
 
 export function Awards() {
+  const ref = useRef<HTMLDivElement>(null);
+  const reduced = useReducedMotion();
+  const { scrollYProgress } = useScroll({
+    target: ref,
+    offset: ["start end", "end start"],
+  });
+  const p = useSpring(scrollYProgress, { stiffness: 80, damping: 26, mass: 0.4 });
+  const rotateX = useTransform(p, [0, 0.5, 1], [9, 0, -6]);
+  const rotateY = useTransform(p, [0, 0.5, 1], [-5, 0, 3]);
+  const z = useTransform(p, [0, 0.5, 1], [-180, 0, -70]);
+  const y = useTransform(p, [0, 0.5, 1], [40, 0, -26]);
+  const scale = useTransform(p, [0, 0.5, 1], [0.955, 1, 0.98]);
+
+  const style = reduced ? undefined : { rotateX, rotateY, z, y, scale };
+
   return (
-    <section className="mx-auto max-w-6xl px-4 py-24 sm:px-6">
+    <section id="our-dna" className="mx-auto max-w-6xl px-4 py-24 sm:px-6">
       <Reveal>
-        <SectionLabel>Recognition</SectionLabel>
+        <SectionLabel>Our DNA</SectionLabel>
       </Reveal>
       <Reveal>
         <TextReveal
-          text="Work that keeps getting noticed."
+          text="Our DNA"
           className="mt-4 max-w-2xl text-[clamp(1.9rem,4vw,3rem)] leading-[1.05]"
         />
       </Reveal>
-      <ScrollStage>
-        <div className="mt-12 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
-          {awards.map((a, i) => (
-            <ScrollCard key={a.title} delay={i * 0.06} className="h-full">
-              <Tilt className="surface-card grain-overlay flex h-full flex-col justify-between p-6">
-                <div className="flex items-center justify-between text-[0.7rem] tracking-widest text-muted-foreground uppercase">
-                  <span>{a.date}</span>
-                  <motion.span
-                    animate={{ rotate: [0, 8, -8, 0] }}
-                    transition={{ duration: 6, repeat: Infinity, ease: "easeInOut", delay: i * 0.4 }}
-                  >
-                    <SunMark className="h-4 w-7 text-sun" />
-                  </motion.span>
-                </div>
-                <h3 className="mt-14 text-xl">{a.title}</h3>
-                <p className="mt-2 text-sm text-muted-foreground">{a.body}</p>
-              </Tilt>
-            </ScrollCard>
-          ))}
-        </div>
-      </ScrollStage>
+
+      <div ref={ref} className="mt-12 [perspective:1400px] [perspective-origin:50%_35%]">
+        <motion.div className="[transform-style:preserve-3d] will-change-transform" style={style as never}>
+          <article className="surface-card grain-overlay relative overflow-hidden bg-[image:var(--gradient-dawn)] p-8 sm:p-14 lg:p-20">
+            <span
+              aria-hidden
+              className="pointer-events-none absolute inset-0 rounded-[inherit]"
+              style={{
+                background:
+                  "radial-gradient(120% 90% at 12% 0%, color-mix(in oklab, var(--sun) 16%, transparent), transparent 65%)",
+              }}
+            />
+            <div className="relative flex items-center justify-between text-[0.7rem] tracking-[0.28em] text-muted-foreground uppercase">
+              <span>Manifesto</span>
+              <SunMark className="h-4 w-7 text-sun" />
+            </div>
+            <p className="relative mt-8 max-w-4xl text-[clamp(1.05rem,2.1vw,1.6rem)] leading-[1.65] tracking-[0.005em] text-ink">
+              We’re DevCave — a place where ambitious ideas find the room to become real. We work
+              somewhere between imagination and execution, turning complex problems, bold visions,
+              and untapped possibilities into digital products people can experience and businesses
+              can grow with. Design gives them form. Technology gives them power. And our way of
+              thinking gives them a reason to be different.
+            </p>
+            <span aria-hidden className="relative mt-10 block h-px w-16 bg-border" />
+          </article>
+        </motion.div>
+      </div>
     </section>
   );
 }
+
 
 export function Testimonials() {
   const loop = [...testimonials, ...testimonials];
