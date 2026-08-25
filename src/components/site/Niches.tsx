@@ -14,21 +14,14 @@ import { SunMark } from "./SunMark";
 
 /* existing service content, reused verbatim */
 const niches = [
-  {
-    name: "Brand",
-    body: "Creating identities that stand apart and stay recognizable.",
-    tone: "from-peach/70 to-card",
-  },
-  {
-    name: "Web",
-    body: "Crafting digital experiences built to engage and convert.",
-    tone: "from-sky/70 to-card",
-  },
-  {
-    name: "Motion",
-    body: "Adding movement that brings every brand experience to life.",
-    tone: "from-sun/40 to-card",
-  },
+  { name: "SaaS", tone: "from-peach/70 to-card" },
+  { name: "Custom Software", tone: "from-sky/70 to-card" },
+  { name: "Apps & Websites", tone: "from-sun/40 to-card" },
+  { name: "Data & AI Solutions", tone: "from-peach/70 to-card" },
+  { name: "Professional Training", tone: "from-sky/70 to-card" },
+  { name: "SEO", tone: "from-sun/40 to-card" },
+  { name: "UI/UX Design", tone: "from-peach/70 to-card" },
+  { name: "Graphics Design", tone: "from-sky/70 to-card" },
 ];
 
 type Geometry = { spacing: number; lift: number; tilt: number };
@@ -100,10 +93,9 @@ function NicheCard({
           <SunMark className="h-4 w-7 text-sun" />
         </div>
         <div>
-          <h3 className="text-[clamp(1.6rem,3.2vw,2.4rem)] leading-[1.05]">{niche.name}</h3>
-          <p className="mt-3 max-w-xs text-sm leading-relaxed text-muted-foreground">
-            {niche.body}
-          </p>
+          <h3 className="text-[clamp(1.35rem,2.6vw,2.1rem)] leading-[1.08] text-balance">
+            {niche.name}
+          </h3>
         </div>
       </div>
     </motion.article>
@@ -135,11 +127,11 @@ export function Niches() {
           <div className="mx-auto w-full max-w-6xl px-4 sm:px-6">
             <div className="relative">
               <Reveal>
-                <p className="text-xs tracking-[0.28em] text-muted-foreground uppercase">Niches</p>
+                <p className="text-xs tracking-[0.28em] text-muted-foreground uppercase">Service</p>
               </Reveal>
               <Reveal>
                 <TextReveal
-                  text="Three disciplines, one coherent result."
+                  text="Eight disciplines, one coherent result."
                   className="mt-4 max-w-xl text-[clamp(1.7rem,3.6vw,2.9rem)] leading-[1.05]"
                 />
               </Reveal>
