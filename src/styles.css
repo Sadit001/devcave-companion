@@ -406,3 +406,14 @@
 .dc-nav-over-hero ul a:hover {
   color: #e8eefc;
 }
+
+/* Hero CTA: white surface with pure black label (kept above shine overlay) */
+.dc-cta-light {
+  background-color: #ffffff;
+  color: #000000 !important;
+}
+.dc-cta-light:hover,
+.dc-cta-light:focus-visible {
+  background-color: #ffffff;
+  color: #000000 !important;
+}
