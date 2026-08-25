@@ -150,7 +150,7 @@ export function Stats() {
               className="font-display text-[clamp(2.4rem,5vw,3.6rem)] leading-none text-ink"
             />
             <p className="mt-3 text-lg">{s.label}</p>
-            <p className="mt-1 text-sm text-muted-foreground">{s.body}</p>
+            {s.body ? <p className="mt-1 text-sm text-muted-foreground">{s.body}</p> : null}
           </Reveal>
         ))}
       </div>
