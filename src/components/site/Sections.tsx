@@ -50,9 +50,9 @@ const testimonials = [
 ];
 
 const stats = [
-  { value: "30+", label: "Projects", body: "Delivered to ambitious brands." },
-  { value: "8+", label: "Awards", body: "Recognized by industry leading jurys." },
-  { value: "1M+", label: "Views", body: "Monthly across the websites we build." },
+  { value: "15+", label: "Projects", body: "Delivered to ambitious brands." },
+  { value: "2", label: "Running Projects", body: "" },
+  { value: "100K+", label: "Views", body: "Monthly across the websites we build." },
 ];
 
 const work = [
@@ -150,7 +150,7 @@ export function Stats() {
               className="font-display text-[clamp(2.4rem,5vw,3.6rem)] leading-none text-ink"
             />
             <p className="mt-3 text-lg">{s.label}</p>
-            <p className="mt-1 text-sm text-muted-foreground">{s.body}</p>
+            {s.body ? <p className="mt-1 text-sm text-muted-foreground">{s.body}</p> : null}
           </Reveal>
         ))}
       </div>

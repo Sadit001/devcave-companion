@@ -78,9 +78,9 @@ export function Nav() {
             whileHover={{ scale: 1.06 }}
             whileTap={{ scale: 0.96 }}
             transition={{ type: "spring", stiffness: 320, damping: 18 }}
-            className="shine inline-block rounded-full bg-primary px-5 py-2 text-sm font-medium text-primary-foreground"
+            className="shine dc-cta-light inline-block rounded-full px-5 py-2 text-sm font-medium"
           >
-            Book a call
+            Hello
           </motion.a>
         </Magnetic>
       </nav>

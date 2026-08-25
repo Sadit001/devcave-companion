@@ -375,8 +375,8 @@
   position: relative;
   z-index: 1;
   user-select: none;
-  font-family: var(--font-editorial);
-  font-weight: 300;
+  font-family: "Bodoni Moda", var(--font-editorial);
+  font-weight: 400;
   font-style: italic;
   line-height: 0.78;
   letter-spacing: 0.08em;
@@ -405,4 +405,15 @@
 }
 .dc-nav-over-hero ul a:hover {
   color: #e8eefc;
+}
+
+/* Hero CTA: white surface with pure black label (kept above shine overlay) */
+.dc-cta-light {
+  background-color: #ffffff;
+  color: #000000 !important;
+}
+.dc-cta-light:hover,
+.dc-cta-light:focus-visible {
+  background-color: #ffffff;
+  color: #000000 !important;
 }
